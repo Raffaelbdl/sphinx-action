@@ -156,6 +156,8 @@ def build_docs(build_command, docs_directory, library_name):
 
 
 def build_all_docs(github_env, docs_directories, library_name):
+    os.system("apt-get update -y && apt-get install -y git")
+    
     docs_directories = docs_directories
 
     if len(docs_directories) == 0:
