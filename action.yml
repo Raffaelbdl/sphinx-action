@@ -5,7 +5,7 @@ branding:
   icon: 'book'
   color: 'yellow'
 inputs:
-  libary-name:
+  library-name:
     description:
       The name of the directory that contains the libary.
     required: true
