@@ -99,6 +99,14 @@ def build_docs(build_command, docs_directory, library_name):
     if not build_command:
         raise ValueError("Build command may not be empty")
     
+    sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
+
+    # install git
+    subprocess.check_call(
+        shlex.split("apt-get update -y && apt-get install -y git"),
+        env=dict(os.environ, SPHINXOPTS=sphinx_options),
+    )
+    
     # update pip
     subprocess.check_call(["pip", "install", "--upgrade", "pip"])
 
@@ -113,7 +121,6 @@ def build_docs(build_command, docs_directory, library_name):
     if os.path.exists(log_file):
         os.unlink(log_file)
 
-    sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
 
 
     # use autodoc
@@ -156,8 +163,6 @@ def build_docs(build_command, docs_directory, library_name):
 
 
 def build_all_docs(github_env, docs_directories, library_name):
-    os.system("apt-get update -y && apt-get install -y git-core")
-
     docs_directories = docs_directories
 
     if len(docs_directories) == 0:
