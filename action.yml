@@ -25,7 +25,7 @@ inputs:
       dependencies, for example with
       "apt-get update -y && apt-get install -y perl && apt-get install -y git"
     required: false
-    defaut: "apt-get update -y && apt-get install -y git"
+    default: "apt-get update -y && apt-get install -y git"
 runs:
   using: 'docker'
   image: 'Dockerfile'
