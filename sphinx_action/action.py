@@ -107,7 +107,7 @@ def build_docs(build_command, docs_directory, library_name):
         subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
     # install dependencies
-    subprocess.check_call(["pip", "install", "-e", "."])
+    subprocess.check_call(["pip", "install", "-r", "requirements.txt"])
 
     log_file = os.path.join(tempfile.gettempdir(), "sphinx-log")
     if os.path.exists(log_file):
