@@ -107,6 +107,8 @@ def build_docs(build_command, docs_directory):
     if os.path.exists(log_file):
         os.unlink(log_file)
 
+    sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
+    
     # use autodoc
     print("Start autodoc")
     print(docs_directory)
@@ -117,7 +119,6 @@ def build_docs(build_command, docs_directory):
     )
     print("Finish autodoc")
 
-    sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
     # If we're using make, pass the options as part of the SPHINXOPTS
     # environment variable, otherwise pass them straight into the command.
     build_command = shlex.split(build_command)
