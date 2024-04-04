@@ -111,7 +111,7 @@ def build_docs(build_command, docs_directory, library_name):
 
     # use autodoc
     print("Start autodoc")
-    print(docs_directory)
+    print(library_name)
     subprocess.call(
         ["sphinx-apidoc", "-f", "-o", "source/modules/", f"../{library_name}/"],
         env=dict(os.environ, SPHINXOPTS=sphinx_options),
@@ -148,8 +148,8 @@ def build_docs(build_command, docs_directory, library_name):
     return return_code, annotations
 
 
-def build_all_docs(github_env, docs_directories):
-    docs_directories, library_name = docs_directories
+def build_all_docs(github_env, docs_directories, library_name):
+    docs_directories = docs_directories
 
     if len(docs_directories) == 0:
         raise ValueError("Please provide at least one docs directory to build")
