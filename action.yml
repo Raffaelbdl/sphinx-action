@@ -5,6 +5,10 @@ branding:
   icon: 'book'
   color: 'yellow'
 inputs:
+  libary-name:
+    description:
+      The name of the directory that contains the libary.
+      required: true
   docs-folder:
     description:
       The folder containing your sphinx docs.

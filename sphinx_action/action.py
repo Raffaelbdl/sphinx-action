@@ -95,7 +95,7 @@ maximum 1 argument(s) allowed, 2 supplied.
     return annotations
 
 
-def build_docs(build_command, docs_directory):
+def build_docs(build_command, docs_directory, library_name):
     if not build_command:
         raise ValueError("Build command may not be empty")
 
@@ -108,12 +108,12 @@ def build_docs(build_command, docs_directory):
         os.unlink(log_file)
 
     sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
-    
+
     # use autodoc
     print("Start autodoc")
     print(docs_directory)
     subprocess.call(
-        ["sphinx-apidoc", "-f", "-o", "docs/source/modules/", "../kitae/"],
+        ["sphinx-apidoc", "-f", "-o", "source/modules/", f"../{library_name}/"],
         env=dict(os.environ, SPHINXOPTS=sphinx_options),
         cwd=docs_directory,
     )
@@ -149,6 +149,8 @@ def build_docs(build_command, docs_directory):
 
 
 def build_all_docs(github_env, docs_directories):
+    docs_directories, library_name = docs_directories
+
     if len(docs_directories) == 0:
         raise ValueError("Please provide at least one docs directory to build")
 
@@ -160,7 +162,7 @@ def build_all_docs(github_env, docs_directories):
         print("Building docs in {}".format(docs_dir))
         print("====================================")
 
-        return_code, annotations = build_docs(github_env.build_command, docs_dir)
+        return_code, annotations = build_docs(github_env.build_command, docs_dir, library_name)
         if return_code != 0:
             build_success = False
 
