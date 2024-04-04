@@ -13,6 +13,9 @@ if __name__ == "__main__":
         pre_command = os.environ["INPUT_PRE-BUILD-COMMAND"]
         print("Running: {}".format(pre_command))
         os.system(pre_command)
+    else:
+        print("mysteriously skipped")
+        print(os.environ["INPUT_PRE-BUILD-COMMAND"])
 
     github_env = action.GithubEnvironment(
         build_command=os.environ.get("INPUT_BUILD-COMMAND"),
