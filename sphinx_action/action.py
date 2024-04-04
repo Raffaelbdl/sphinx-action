@@ -103,11 +103,15 @@ def build_docs(build_command, docs_directory, library_name):
     if os.path.exists(docs_requirements):
         subprocess.check_call(["pip", "install", "-r", docs_requirements])
 
+    # install dependencies
+    subprocess.check_call(["pip", "install", "-e", ".."])
+
     log_file = os.path.join(tempfile.gettempdir(), "sphinx-log")
     if os.path.exists(log_file):
         os.unlink(log_file)
 
     sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
+
 
     # use autodoc
     print("Start autodoc")
