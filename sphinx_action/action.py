@@ -109,6 +109,7 @@ def build_docs(build_command, docs_directory):
 
     # use autodoc
     print("Start autodoc")
+    print(docs_directory)
     subprocess.call(
         ["sphinx-apidoc", "-f", "-o", "docs/source/modules/", "../kitae/"],
         env=dict(os.environ, SPHINXOPTS=sphinx_options),
