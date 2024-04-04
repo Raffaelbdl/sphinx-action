@@ -98,6 +98,9 @@ maximum 1 argument(s) allowed, 2 supplied.
 def build_docs(build_command, docs_directory, library_name):
     if not build_command:
         raise ValueError("Build command may not be empty")
+    
+    # update pip
+    subprocess.check_call(["pip", "install", "--upgrade", "pip"])
 
     docs_requirements = os.path.join(docs_directory, "requirements.txt")
     if os.path.exists(docs_requirements):
