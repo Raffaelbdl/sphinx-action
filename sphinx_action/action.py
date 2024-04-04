@@ -103,12 +103,6 @@ def build_docs(build_command, docs_directory, library_name):
     if os.path.exists(log_file):
         os.unlink(log_file)
     sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
-
-    # install git
-    subprocess.check_call(
-        shlex.split("apt-get update -y && apt-get install -y git"),
-        env=dict(os.environ, SPHINXOPTS=sphinx_options),
-    )
     
     # update pip
     subprocess.check_call(["pip", "install", "--upgrade", "pip"])
