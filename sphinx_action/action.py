@@ -107,6 +107,11 @@ def build_docs(build_command, docs_directory):
     if os.path.exists(log_file):
         os.unlink(log_file)
 
+    # use autodoc
+    subprocess.call([
+        "sphinx-apidoc", "-f", "-o", "docs/source/modules/", "../kitae/"
+    ])
+
     sphinx_options = '--keep-going --no-color -w "{}"'.format(log_file)
     # If we're using make, pass the options as part of the SPHINXOPTS
     # environment variable, otherwise pass them straight into the command.
